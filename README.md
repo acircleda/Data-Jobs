@@ -10,7 +10,7 @@ of jobs potential ESM graduates may be qualified for.
 
 All data comes from [HigherEdJobs](http://www.higheredjobs.com) using
 the following
-    searches
+    searchers
 
   - [Search 1](https://www.higheredjobs.com/search/advanced_action.cfm?JobCat=14&JobCat=212&JobCat=148&JobCat=27&JobCat=31&JobCat=43&PosType=1&PosType=2&InstType=1&InstType=2&InstType=3&Keyword=quantitative+OR+statistics+OR+measurement+OR+data&Remote=1&Remote=2&Region=&Submit=Search+Jobs)
   - [Search 2](https://www.higheredjobs.com/search/advanced_action.cfm?PosType=1&PosType=2&InstType=1&InstType=2&InstType=3&Keyword=%22data+scientist%22+OR+%22data+engineer%22+OR+%22data+analyst%22&Remote=1&Remote=2&Region=&Submit=Search+Jobs)
@@ -47,6 +47,7 @@ followed by frequency counts of specific statistical analyses.
 | excel            | 27 |
 | sql              | 26 |
 | database         | 23 |
+| r                | 21 |
 | sas              | 19 |
 | tableau          | 19 |
 | python           | 16 |

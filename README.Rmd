@@ -46,7 +46,6 @@ tidy_jobs <- job_data %>% mutate(
 
 tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content) 
 tidy_jobs <- tidy_jobs %>%
-  anti_join(stop_words) %>%  #remove common words to reduce size
   distinct(word, job_file, .keep_all = TRUE) #remove duplicates per job
 
 nrow(job_data) %>%
