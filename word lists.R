@@ -57,7 +57,8 @@ langs <- tibble(word = c('actuate',
                          'javascript',
                          'arcgis',
                          'nvivo',
-                         'dedoose'
+                         'dedoose',
+                         'vba'
                          
 ))
 

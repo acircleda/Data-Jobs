@@ -35,7 +35,7 @@ for(i in 1:nrow(file_list)) {
   # #   next
   # # }
   # 
-  job_name <- html_nodes(tmp_single_job,'h1') %>% html_text()
+  job_name <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobtitle-header"]') %>% html_text()
   job_inst <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[2]/div[2]') %>% html_text()
   job_cat <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[3]/div[2]/text()') %>% html_text()
   job_posted_date <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[4]/div[2]') %>% html_text()
@@ -48,8 +48,7 @@ for(i in 1:nrow(file_list)) {
   
 }
 
-#some jobs may have downloaded strangely and are duplicated with my name (because I was logged in when downloading) so we will remove them
-job_data <- job_data %>% subset(job_name != "Hi, Anthony.")
+job_data <- job_data %>% distinct(job_file, .keep_all = TRUE) #remove any duplicates
 
 # #### scrape single page ####
 # 

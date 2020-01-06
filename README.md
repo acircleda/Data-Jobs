@@ -1,4 +1,4 @@
-README
+Data-Related Jobs for ESM Graduates
 ================
 
 ## Purpose
@@ -40,34 +40,38 @@ followed by frequency counts of specific statistical analyses.
 
 | Number of Jobs Analyzed |
 | ----------------------: |
-|                      37 |
+|                      60 |
 
-| Platform  |  n |
-| :-------- | -: |
-| excel     | 24 |
-| sql       | 20 |
-| tableau   | 19 |
-| cognos    | 17 |
-| database  | 16 |
-| sas       | 13 |
-| spss      | 13 |
-| r         | 12 |
-| python    | 10 |
-| oracle    |  6 |
-| warehouse |  6 |
-| stata     |  5 |
-| powerbi   |  4 |
-| minitab   |  3 |
-| scala     |  2 |
-| cluster   |  1 |
-| matlab    |  1 |
-| qlik      |  1 |
+| Program/Language |  n |
+| :--------------- | -: |
+| excel            | 27 |
+| sql              | 26 |
+| database         | 22 |
+| tableau          | 19 |
+| sas              | 17 |
+| python           | 15 |
+| spss             | 13 |
+| cognos           | 10 |
+| warehouse        |  9 |
+| oracle           |  8 |
+| stata            |  8 |
+| powerbi          |  7 |
+| scala            |  4 |
+| vba              |  3 |
+| java             |  2 |
+| minitab          |  2 |
+| arcgis           |  1 |
+| dedoose          |  1 |
+| javascript       |  1 |
+| matlab           |  1 |
+| nvivo            |  1 |
+| qlik             |  1 |
 
 | Statistics   | n |
 | :----------- | -: |
-| inferential  | 4 |
-| descriptive  | 3 |
+| descriptive  | 2 |
 | forecasts    | 2 |
+| inferential  | 2 |
 | projections  | 2 |
 | regression   | 2 |
 | anova        | 1 |

@@ -1,5 +1,5 @@
 ---
-title: "README"
+title: "Data-Related Jobs for ESM Graduates"
 output: github_document
 ---
 
@@ -44,14 +44,17 @@ tidy_jobs <- job_data %>% mutate(
   content = as.character(job_body))
 
 
-tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content)
+tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content) 
+tidy_jobs <- tidy_jobs %>%
+  anti_join(stop_words) %>%  #remove common words to reduce size
+  distinct(word, job_file, .keep_all = TRUE) #remove duplicates per job
 
 nrow(job_data) %>%
   kable(row.names = FALSE, col.names = "Number of Jobs Analyzed")
 
 job_langs <- tidy_jobs %>% inner_join(langs)
 job_langs %>% count(word) %>% arrange(-n) %>%
-  rename("Platform" = word) %>%
+  rename("Program/Language" = word) %>%
   kable(row.names = FALSE)
 
 job_stats <- tidy_jobs %>% inner_join(statistics)
