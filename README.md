@@ -40,16 +40,16 @@ followed by frequency counts of specific statistical analyses.
 
 | Number of Jobs Analyzed |
 | ----------------------: |
-|                      60 |
+|                      65 |
 
 | Program/Language |  n |
 | :--------------- | -: |
 | excel            | 27 |
 | sql              | 26 |
-| database         | 22 |
+| database         | 23 |
+| sas              | 19 |
 | tableau          | 19 |
-| sas              | 17 |
-| python           | 15 |
+| python           | 16 |
 | spss             | 13 |
 | cognos           | 10 |
 | warehouse        |  9 |
@@ -69,13 +69,14 @@ followed by frequency counts of specific statistical analyses.
 
 | Statistics   | n |
 | :----------- | -: |
-| descriptive  | 2 |
-| forecasts    | 2 |
-| inferential  | 2 |
+| descriptive  | 3 |
+| forecasts    | 3 |
+| inferential  | 3 |
 | projections  | 2 |
 | regression   | 2 |
 | anova        | 1 |
 | correlation  | 1 |
+| correlations | 1 |
 | factor       | 1 |
 | hierarchical | 1 |
 | logistic     | 1 |
