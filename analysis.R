@@ -3,6 +3,7 @@ library(tidytext)
 library(dplyr)
 library(knitr)
 source("word lists.R")
+source("scraping.R")
 
 #### Number of jobs #### 
 nrow(job_data) %>%
@@ -16,7 +17,7 @@ tidy_jobs <- job_data %>% mutate(
 
 tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content) 
 tidy_jobs <- tidy_jobs %>%
-  anti_join(stop_words) %>%  #remove common words to reduce size
+  #anti_join(stop_words) %>%  #remove common words to reduce size
   distinct(word, job_file, .keep_all = TRUE) #remove duplicates per job
 
 #### Languages ####
@@ -30,3 +31,5 @@ job_stats <- tidy_jobs %>% inner_join(statistics)
 job_stats %>% count(word) %>% arrange(-n) %>%
   rename("Statistics" = word) %>%
   kable(row.names = FALSE)
+
+tidy_jobs %>% select(word) %>% view()

@@ -40,7 +40,7 @@ followed by frequency counts of specific statistical analyses.
 
 | Number of Jobs Analyzed |
 | ----------------------: |
-|                      65 |
+|                      66 |
 
 | Program/Language |  n |
 | :--------------- | -: |
@@ -69,6 +69,7 @@ followed by frequency counts of specific statistical analyses.
 
 | Statistics   | n |
 | :----------- | -: |
+| mining       | 9 |
 | descriptive  | 3 |
 | forecasts    | 3 |
 | inferential  | 3 |

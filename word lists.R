@@ -30,6 +30,9 @@ langs <- tibble(word = c('actuate',
                          'python',
                          'qlik',
                          'r',
+                         'r,',
+                         ' r',
+                         'r ',
                          'rapidminer',
                          'salfordspm',
                          'sap',
@@ -87,5 +90,26 @@ statistics <- tibble(word = c(
   'hierarchical',
   'multilevel',
   'structural',
-  'time-series'
+  'time-series',
+  'mining'
+))
+
+skills <- tibble(word = c(
+  'visualization',
+  'qualitative',
+  'statistics',
+  'survey',
+  'questionnaire',
+  'cleaning',
+  'wrangling',
+  'presentation'
+))
+
+databases <- tibble(word = c(
+  'ipeds',
+  'timms',
+  'pisa',
+  'nces',
+  'b&b',
+  'bps'
 ))
