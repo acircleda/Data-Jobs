@@ -49,18 +49,15 @@ langs <- tibble(word = c('actuate',
                          'warehouse',
                          'database',
                          'mplus',
-                         'cluster',
-                         't-test',
-                         't-tests',
-                         'univariate',
-                         'bivariate',
-                         'multivariate',
                          'github',
                          'git',
                          'html',
                          'php',
                          'css',
-                         'javascript'
+                         'javascript',
+                         'arcgis',
+                         'nvivo',
+                         'dedoose'
                          
 ))
 
@@ -90,5 +87,4 @@ statistics <- tibble(word = c(
   'multilevel',
   'structural',
   'time-series'
-  
 ))
