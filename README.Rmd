@@ -1,6 +1,6 @@
 ---
 title: "Data-Related Jobs for ESM Graduates"
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
