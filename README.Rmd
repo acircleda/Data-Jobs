@@ -38,7 +38,7 @@ The content of the files is scraped using the *rvest* package. The code can be f
 
 ## Job Ad Data {.tabset .tabset-fade}
 
-``` {r data_setup, echo=FALSE}
+``` {r data, echo=FALSE}
 tidy_jobs <- job_data %>% mutate(
   content = as.character(job_body))
 
@@ -90,3 +90,5 @@ To develop this project more, I plan to:
 3. Create a "skills" wordlist
 4. Allow sorting by job type, location, etc.
   + Maybe a Shiny app?
+
+  
