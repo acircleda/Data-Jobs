@@ -13,7 +13,7 @@ nrow(job_data) %>%
 
 
 #### Prepare Tidy Text ####
-tidy_jobs <- job_data %>% mutate(
+tidy_jobs <- job_data %>% select(-job_body_html) %>% mutate(
   content = as.character(job_body))
 
 
@@ -78,9 +78,8 @@ job_data_with_links <- job_link_id %>% mutate(
     '<a href="https://www.higheredjobs.com/myHigherEdJobs/Agent/details.cfm?JobCode=',link_id,'" target="_blank">',job_name,'</a>')
   )
 
-job_data_with_links %>% select(link, job_cat, job_body) %>%
+job_data_with_links %>% select(link, job_cat, job_body_html) %>%
   datatable(rownames = FALSE, escape = FALSE,
             colnames = c("Job", "Category", "Job Ad"),
             options = list(pageLength = 1, lengthChange = FALSE, searchHighlight = TRUE)) %>%
   formatStyle(c('link','job_cat'), `vertical-align` = 'top')
-)

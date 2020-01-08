@@ -13,7 +13,7 @@ library(rvest)
 
 #### scrape jobs ####
 #1. set empty data frame
-job_data <- setNames(data.frame(matrix(ncol = 7, nrow = 0)), c("job_file", "job_name", "job_inst", "job_cat", "job_posted_date", "job_type", "job_body"))
+job_data <- setNames(data.frame(matrix(ncol = 8, nrow = 0)), c("job_file", "job_name", "job_inst", "job_cat", "job_posted_date", "job_type", "job_body", "job_body_html"))
 
 #2. update internal job links
 file_list <- data.frame(files = list.files("job-files"))
@@ -41,8 +41,9 @@ for(i in 1:nrow(file_list)) {
   job_posted_date <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[4]/div[2]') %>% html_text()
   job_type <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[5]/div[2]') %>% html_text()
   job_body <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobDesc"]') %>% html_text()
+  job_body_html <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobDesc"]') %>% paste(collapse = '\n')
   
-  tmp_single_job_data <- data.frame(job_file, job_name, job_inst, job_cat, job_posted_date, job_type, job_body)
+  tmp_single_job_data <- data.frame(job_file, job_name, job_inst, job_cat, job_posted_date, job_type, job_body, job_body_html)
   
   job_data <- job_data %>% rbind(tmp_single_job_data)
   
