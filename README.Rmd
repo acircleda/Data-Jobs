@@ -18,6 +18,10 @@ source("word lists.R")
 
 The purpose of this project is to understand the skills and competencies of jobs potential ESM graduates may be qualified for.
 
+## Project Files
+
+Project files can be found here: https://acircleda.github.io/Data-Jobs/
+
 ## Data and Methodology
 
 All data comes from administrative job ads [HigherEdJobs](http://www.higheredjobs.com) using the following searches:
