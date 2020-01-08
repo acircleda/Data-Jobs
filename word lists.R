@@ -1,5 +1,8 @@
 library(tidyverse)
 
+stop_words_r <- stop_words %>% filter(word != "r")
+
+#### Programming Languages ####
 langs <- tibble(word = c('actuate',
                          'alpine',
                          'alteryx',
@@ -65,6 +68,7 @@ langs <- tibble(word = c('actuate',
                          
 ))
 
+#### Statistical Methods ####
 statistics <- tibble(word = c(
   'regression',
   'logistic',
@@ -94,6 +98,7 @@ statistics <- tibble(word = c(
   'mining'
 ))
 
+#### Other Skills ####
 skills <- tibble(word = c(
   'visualization',
   'qualitative',
@@ -102,14 +107,24 @@ skills <- tibble(word = c(
   'questionnaire',
   'cleaning',
   'wrangling',
-  'presentation'
+  'presentation',
+  'graph',
+  'graphs'
 ))
 
+#### Databases ####
 databases <- tibble(word = c(
   'ipeds',
   'timms',
   'pisa',
   'nces',
   'b&b',
-  'bps'
+  'bps',
+  'peoplesoft'
+))
+
+#### Job Titles ####
+job_title_list <- tibble(word = c(
+  'Data Scientist',
+  'Data Analyst'
 ))

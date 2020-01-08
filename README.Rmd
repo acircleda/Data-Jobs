@@ -9,6 +9,7 @@ library(tidyverse)
 library(tidytext)
 library(dplyr)
 library(knitr)
+library(DT)
 source("scraping.R")
 source("word lists.R")
 ```
@@ -35,14 +36,11 @@ All downloaded jobs can be found in the **job-files** directory.
 The content of the files is scraped using the *rvest* package. The code can be found in the **scraping.R** file. The code is then analyzed using *tidytext* and words from the **word lists.R** file.
 
 
-## Some basic findings
+## Job Ad Data {.tabset .tabset-fade}
 
-The following are frequency counts of software and language programs, followed by frequency counts of specific statistical analyses.
-
-``` {r data, echo=FALSE}
+``` {r data_setup, echo=FALSE}
 tidy_jobs <- job_data %>% mutate(
   content = as.character(job_body))
-
 
 tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content) 
 tidy_jobs <- tidy_jobs %>%
@@ -50,18 +48,38 @@ tidy_jobs <- tidy_jobs %>%
 
 nrow(job_data) %>%
   kable(row.names = FALSE, col.names = "Number of Jobs Analyzed")
+```
+### Job Categories
 
+``` {r job_categories, echo=FALSE}
+job_data %>%
+  filter(str_count(job_cat, ' ') > 0) %>%
+  group_by(job_cat) %>% count() %>% 
+  arrange(-n) %>% datatable(
+    rownames = FALSE,
+    colnames = c("Job Category", "Count"))
+```
+
+## Basic Findings {.tabset .tabset-fade}
+
+### Programming/Software
+
+``` {r langs, echo=FALSE}
 job_langs <- tidy_jobs %>% inner_join(langs)
 job_langs %>% count(word) %>% arrange(-n) %>%
   rename("Program/Language" = word) %>%
   kable(row.names = FALSE)
+```
 
+### Statistical Skills
+
+``` {r stats, echo=FALSE}
 job_stats <- tidy_jobs %>% inner_join(statistics)
 job_stats %>% count(word) %>% arrange(-n) %>%
   rename("Statistics" = word) %>%
   kable(row.names = FALSE)
-
 ```
+
 
 ## Next Steps
 

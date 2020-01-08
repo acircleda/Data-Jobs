@@ -33,27 +33,32 @@ The content of the files is scraped using the *rvest* package. The code
 can be found in the **scraping.R** file. The code is then analyzed using
 *tidytext* and words from the **word lists.R** file.
 
-## Some basic findings
-
-The following are frequency counts of software and language programs,
-followed by frequency counts of specific statistical analyses.
+## Job Ad Data
 
 | Number of Jobs Analyzed |
 | ----------------------: |
-|                      66 |
+|                      76 |
+
+### Job Categories
+
+![](README_files/figure-gfm/job_categories-1.png)<!-- -->
+
+## Basic Findings
+
+### Programming/Software
 
 | Program/Language |  n |
 | :--------------- | -: |
-| excel            | 27 |
-| sql              | 26 |
-| database         | 23 |
-| r                | 21 |
-| sas              | 19 |
-| tableau          | 19 |
-| python           | 16 |
+| excel            | 30 |
+| sql              | 27 |
+| database         | 26 |
+| r                | 22 |
+| tableau          | 22 |
+| sas              | 21 |
+| python           | 17 |
 | spss             | 13 |
 | cognos           | 10 |
-| warehouse        |  9 |
+| warehouse        | 10 |
 | oracle           |  8 |
 | stata            |  8 |
 | powerbi          |  7 |
@@ -63,26 +68,29 @@ followed by frequency counts of specific statistical analyses.
 | minitab          |  2 |
 | arcgis           |  1 |
 | dedoose          |  1 |
+| html             |  1 |
 | javascript       |  1 |
 | matlab           |  1 |
 | nvivo            |  1 |
 | qlik             |  1 |
 
-| Statistics   | n |
+### Statistical Skills
+
+| Statistics   |  n |
 | :----------- | -: |
-| mining       | 9 |
-| descriptive  | 3 |
-| forecasts    | 3 |
-| inferential  | 3 |
-| projections  | 2 |
-| regression   | 2 |
-| anova        | 1 |
-| correlation  | 1 |
-| correlations | 1 |
-| factor       | 1 |
-| hierarchical | 1 |
-| logistic     | 1 |
-| pca          | 1 |
+| mining       | 10 |
+| descriptive  |  4 |
+| inferential  |  4 |
+| forecasts    |  3 |
+| regression   |  3 |
+| factor       |  2 |
+| logistic     |  2 |
+| projections  |  2 |
+| anova        |  1 |
+| correlation  |  1 |
+| correlations |  1 |
+| hierarchical |  1 |
+| pca          |  1 |
 
 ## Next Steps
 

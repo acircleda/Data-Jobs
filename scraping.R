@@ -36,8 +36,8 @@ for(i in 1:nrow(file_list)) {
   # # }
   # 
   job_name <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobtitle-header"]') %>% html_text()
-  job_inst <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[2]/div[2]') %>% html_text()
-  job_cat <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[3]/div[2]/text()') %>% html_text()
+  job_inst <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[1]/div[2]/strong/a') %>% html_text()
+  job_cat <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[3]/div[2]/text()') %>% html_text() %>% gsub('[\r\n\t]', '', .)
   job_posted_date <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[4]/div[2]') %>% html_text()
   job_type <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobAttrib"]/div[5]/div[2]') %>% html_text()
   job_body <- tmp_single_job %>% html_nodes(xpath = '//*[@id="jobDesc"]') %>% html_text()
