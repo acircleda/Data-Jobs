@@ -64,7 +64,9 @@ langs <- tibble(word = c('actuate',
                          'arcgis',
                          'nvivo',
                          'dedoose',
-                         'vba'
+                         'vba',
+                         'qualtrics',
+                         'salesforce'
                          
 ))
 
@@ -109,7 +111,10 @@ skills <- tibble(word = c(
   'wrangling',
   'presentation',
   'graph',
-  'graphs'
+  'graphs',
+  'dashboard',
+  'dashboards',
+  'warehouse'
 ))
 
 #### Databases ####
@@ -120,7 +125,9 @@ databases <- tibble(word = c(
   'nces',
   'b&b',
   'bps',
-  'peoplesoft'
+  'peoplesoft',
+  'banner',
+  'workday'
 ))
 
 #### Job Titles ####

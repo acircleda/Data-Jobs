@@ -51,17 +51,19 @@ tidy_jobs <- tidy_jobs %>%
   distinct(word, job_file, .keep_all = TRUE) #remove duplicates per job
 
 nrow(job_data) %>%
-  kable(row.names = FALSE, col.names = "Number of Jobs Analyzed")
+  kable(row.names = FALSE, col.names = "Number of Jobs Analyzed", align = "l")
+
 ```
 ### Job Categories
 
 ``` {r job_categories, echo=FALSE}
-job_data %>%
+job_data %>% select(job_cat) %>% 
   filter(str_count(job_cat, ' ') > 0) %>%
-  group_by(job_cat) %>% count() %>% 
-  arrange(-n) %>% datatable(
-    rownames = FALSE,
-    colnames = c("Job Category", "Count"))
+  group_by(job_cat) %>% count() %>%
+  arrange(-n) %>%
+  datatable(rownames = FALSE,
+            colnames = c("Job Categories", "Count"),
+            options = list(pageLength = 5))
 ```
 
 ## Basic Findings {.tabset .tabset-fade}
@@ -95,4 +97,23 @@ To develop this project more, I plan to:
 4. Allow sorting by job type, location, etc.
   + Maybe a Shiny app?
 
+## Browse/Search Jobs
+
+``` {r all_jobs, echo=FALSE}
+job_data_linkchar <- job_data %>% mutate(
+  job_file = as.character(job_file))
   
+job_link_id <- job_data_linkchar %>% mutate(
+  link_id = substr(job_file, start=0, stop=nchar(job_file)-5))
+
+job_data_with_links <- job_link_id %>% mutate(
+  link = paste0(
+    '<a href="https://www.higheredjobs.com/myHigherEdJobs/Agent/details.cfm?JobCode=',link_id,'" target="_blank">',job_name,'</a>')
+  )
+
+job_data_with_links %>% select(link, job_cat, job_body) %>%
+  datatable(rownames = FALSE, escape = FALSE,
+            colnames = c("Job", "Category", "Job Ad"),
+            options = list(pageLength = 1, lengthChange = FALSE, searchHighlight = TRUE)) %>%
+  formatStyle(c('link','job_cat'), `vertical-align` = 'top')
+```
