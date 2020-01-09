@@ -114,7 +114,11 @@ skills <- tibble(word = c(
   'graphs',
   'dashboard',
   'dashboards',
-  'warehouse'
+  'warehouse',
+  'report',
+  'reporting',
+  'presentation',
+  'presentations'
 ))
 
 #### Databases ####

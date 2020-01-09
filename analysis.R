@@ -46,6 +46,10 @@ job_stats %>% count(word) %>% arrange(-n) %>%
   kable(row.names = FALSE)
 
 #### Skills ####
+job_skills <- tidy_jobs %>% inner_join(skills)
+job_skills %>% count(word) %>% arrange(-n) %>%
+  rename("Other Skills" = word) %>%
+  kable(row.names = FALSE)
 
 #### Job Categories ####
 job_data %>%
