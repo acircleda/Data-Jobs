@@ -123,6 +123,9 @@ job_data_with_links <- job_link_id %>% mutate(
 job_data_with_links %>% select(link, job_cat, job_body_html) %>%
   datatable(rownames = FALSE, escape = FALSE,
             colnames = c("Job", "Category", "Job Ad"),
-            options = list(pageLength = 1, lengthChange = FALSE, searchHighlight = TRUE)) %>%
+            options = list(pageLength = 1, 
+                           lengthChange = FALSE, 
+                           searchHighlight = TRUE,
+                           dom = '<"top" pif>')) %>%
   formatStyle(c('link','job_cat'), `vertical-align` = 'top')
 ```
