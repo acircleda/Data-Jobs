@@ -11,9 +11,12 @@ library(rvest)
 # 
 # write.csv(job_links, "job_links.csv")
 
+#### Load job DB ####
+load(file="job_db.Rdata")
+
 #### scrape jobs ####
-#1. set empty data frame
-job_data <- setNames(data.frame(matrix(ncol = 8, nrow = 0)), c("job_file", "job_name", "job_inst", "job_cat", "job_posted_date", "job_type", "job_body", "job_body_html"))
+## 1. set empty data frame - only needed if no db exists ##
+# job_data <- setNames(data.frame(matrix(ncol = 8, nrow = 0)), c("job_file", "job_name", "job_inst", "job_cat", "job_posted_date", "job_type", "job_body", "job_body_html"))
 
 #2. update internal job links
 file_list <- data.frame(files = list.files("job-files"))
@@ -49,7 +52,9 @@ for(i in 1:nrow(file_list)) {
   
 }
 
-job_data <- job_data %>% distinct(job_file, .keep_all = TRUE) #remove any duplicates
+job_data <- job_data %>% distinct(job_file, .keep_all = TRUE)
+save(job_data, file="job_db.RData")
+#remove any duplicates
 
 # #### scrape single page ####
 # 

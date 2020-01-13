@@ -13,9 +13,8 @@ nrow(job_data) %>%
 
 
 #### Prepare Tidy Text ####
-tidy_jobs <- job_data %>% select(-job_body_html) %>% mutate(
+tidy_jobs <- job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(-job_body_html) %>% mutate(
   content = as.character(job_body))
-
 
 tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content) 
 tidy_jobs <- tidy_jobs %>%
@@ -85,5 +84,29 @@ job_data_with_links <- job_link_id %>% mutate(
 job_data_with_links %>% select(link, job_cat, job_body_html) %>%
   datatable(rownames = FALSE, escape = FALSE,
             colnames = c("Job", "Category", "Job Ad"),
-            options = list(pageLength = 1, lengthChange = FALSE, searchHighlight = TRUE)) %>%
+            options = list(pageLength = 1, 
+                           lengthChange = FALSE, 
+                           searchHighlight = TRUE,
+                           dom = '<"top" lpif>')) %>%
   formatStyle(c('link','job_cat'), `vertical-align` = 'top')
+
+#### Salary ####
+# tj1 <- tidy_jobs %>% unnest_tokens(word, content, strip_punct = FALSE) #keeps punctiation
+# 
+# tj2 <- tj1 %>% mutate(
+#   sal1 = lead(word, n=1)) #brings next row next to previous to help connect salary with $
+# 
+# tj3 <- tj2 %>% filter(word == "$" & nchar(sal1) > 5) %>% mutate(
+#   salclean = gsub("[^0-9.-]", "", sal1)) #grabs only $ with numbers bigger than 5,000 to avoid incorrect salaries, removes any leftover words
+#   
+# tj4 <- tj3 %>% mutate(
+#   salary = paste0(word,salclean)
+# ) #creates a salary
+# 
+# tj5 <- tj4 %>% mutate(
+#   range = ifelse(
+#     job_file == lead(job_file, n=1), paste0(salary, " - ", lead(salary, n=1)), ""
+#   )
+# ) %>% filter(range != "") #creates a range
+# 
+# #next step - round numbers, keep only yearly salaries, unnest_tokens again, combine with word lists combine word lists with salary range, compute average begin and average end for each language
