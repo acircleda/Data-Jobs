@@ -44,21 +44,23 @@ The content of the files is scraped using the *rvest* package. The code can be f
 ## Job Ad Data {.tabset .tabset-fade}
 
 ``` {r data, echo=FALSE}
-tidy_jobs <- job_data %>% mutate(
+tidy_jobs <- job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(-job_body_html) %>% mutate(
   content = as.character(job_body))
 
 tidy_jobs <- tidy_jobs %>% unnest_tokens(word, content) 
 tidy_jobs <- tidy_jobs %>%
   distinct(word, job_file, .keep_all = TRUE) #remove duplicates per job
 
-nrow(job_data) %>%
-  kable(row.names = FALSE, col.names = "Number of Jobs Analyzed", align = "l")
+job_data %>% filter(word(job_cat, 1) == "Admin") %>%
+  nrow() %>%
+  kable(row.names = FALSE, col.names = "Number of Jobs Analyzed",
+        align = "l")
 
 ```
 ### Job Categories
 
 ``` {r job_categories, echo=FALSE}
-job_data %>% select(job_cat) %>% 
+job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(job_cat) %>% 
   filter(str_count(job_cat, ' ') > 0) %>%
   group_by(job_cat) %>% count() %>%
   arrange(-n) %>%

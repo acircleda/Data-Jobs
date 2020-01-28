@@ -7,7 +7,8 @@ source("word lists.R")
 source("scraping.R")
 
 #### Number of jobs #### 
-nrow(job_data) %>%
+job_data %>% filter(word(job_cat, 1) == "Admin") %>%
+  nrow() %>%
   kable(row.names = FALSE, col.names = "Number of Jobs Analyzed",
         align = "l")
 
@@ -30,7 +31,7 @@ job_langs %>% count(word) %>% arrange(-n) %>%
 #future: add links to list job_name, job_cat, job_file
 
 #### Job Categories ####
-job_data %>% select(job_cat) %>% 
+job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(job_cat) %>% 
   filter(str_count(job_cat, ' ') > 0) %>%
   group_by(job_cat) %>% count() %>%
   arrange(-n) %>%
@@ -61,7 +62,8 @@ job_data %>%
   #to do: add links to each job category - make list from HEJ
 
 #### Job Names ####
-job_data %>% group_by(job_name) %>% count() %>% 
+job_data %>% filter(word(job_cat, 1) == "Admin") %>%
+  group_by(job_name) %>% count() %>% 
   arrange(-n) %>% datatable()
   
 #click to find links with those job names
