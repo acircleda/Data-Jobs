@@ -1,4 +1,5 @@
 library(tidyverse)
+library(readxl)
 
 stop_words_r <- stop_words %>% filter(word != "r")
 
@@ -100,6 +101,8 @@ statistics <- tibble(word = c(
   'mining'
 ))
 
+
+
 #### Other Skills ####
 skills <- tibble(word = c(
   'visualization',
@@ -139,3 +142,15 @@ job_title_list <- tibble(word = c(
   'Data Scientist',
   'Data Analyst'
 ))
+
+stats_dict_load <- read_excel("dictionary.xlsx", sheet="stats_dict") 
+
+stats_dict <- stats_dict_load %>% pivot_longer(cols = names(stats_dict_load), names_to = 'term') %>% drop_na
+
+rm(stats_dict_load)
+
+skills_dict_load <- read_excel("dictionary.xlsx", sheet="skills_dict") 
+
+skills_dict <- skills_dict_load%>% pivot_longer(cols = names(skills_dict_load), names_to = 'term') %>% drop_na
+rm(skills_dict_load)
+

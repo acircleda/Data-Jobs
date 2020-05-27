@@ -112,3 +112,12 @@ job_data_with_links %>% select(link, job_cat, job_body_html) %>%
 # ) %>% filter(range != "") #creates a range
 # 
 # #next step - round numbers, keep only yearly salaries, unnest_tokens again, combine with word lists combine word lists with salary range, compute average begin and average end for each language
+
+# #test using dictionary ----
+# job_stats <- tidy_jobs %>% inner_join(statistics) %>%
+#   left_join(stats_dict, by = c('word' = 'value')) %>%
+#   mutate(term = coalesce(cat, word))
+# 
+# job_stats %>% count(term) %>% arrange(-n) %>%
+#   rename("Statistics" = term) %>%
+#   kable(row.names = FALSE)
