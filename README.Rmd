@@ -1,7 +1,11 @@
 ---
 title: "Data-Related Jobs for ESM Students"
-output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y at %H:%M')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -41,7 +45,11 @@ All downloaded jobs can be found in the **job-files** directory on [Github](http
 The content of the files is scraped using the *rvest* package. The code can be found in the **scraping.R** file. The code is then analyzed using *tidytext* and words from the **word lists.R** file.
 
 
-## Job Ad Data {.tabset .tabset-fade}
+## Analyses {.tabset .tabset-fade .tabset-pills}
+
+You may toggle between separate analyses for Admin and Faculty jobs.
+
+### Admin Jobs {.tabset .tabset-fade}
 
 ``` {r data, echo=FALSE}
 tidy_jobs <- job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(-job_body_html) %>% mutate(
@@ -57,7 +65,10 @@ job_data %>% filter(word(job_cat, 1) == "Admin") %>%
         align = "l")
 
 ```
-### Job Categories
+
+**Job Categories**
+
+----
 
 ``` {r job_categories, echo=FALSE}
 job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(job_cat) %>% 
@@ -65,13 +76,14 @@ job_data %>% filter(word(job_cat, 1) == "Admin") %>% select(job_cat) %>%
   group_by(job_cat) %>% count() %>%
   arrange(-n) %>%
   datatable(rownames = FALSE,
-            colnames = c("Job Categories", "Count"),
+            colnames = c("Categories", "Count"),
             options = list(pageLength = 5))
 ```
 
-## Basic Findings {.tabset .tabset-fade}
 
-### Programming/Software
+#### **Common Requirements** {.tabset .tabset-fade}
+
+##### Programming/Software
 
 ``` {r langs, echo=FALSE}
 job_langs <- tidy_jobs %>% inner_join(langs)
@@ -80,7 +92,7 @@ job_langs %>% count(word) %>% arrange(-n) %>%
   kable(row.names = FALSE)
 ```
 
-### Statistical Skills
+##### Statistical Skills
 
 ``` {r stats, echo=FALSE}
 job_stats <- tidy_jobs %>% inner_join(statistics)
@@ -89,7 +101,7 @@ job_stats %>% count(word) %>% arrange(-n) %>%
   kable(row.names = FALSE)
 ```
 
-### Other Skills
+##### Other Skills
 
 ```{r skills, echo=FALSE}
 job_skills <- tidy_jobs %>% inner_join(skills)
@@ -98,19 +110,9 @@ job_skills %>% count(word) %>% arrange(-n) %>%
   kable(row.names = FALSE)
 ```
 
-## Next Steps
+#### **Browse/Search Admin Jobs**
 
-To develop this project more, I plan to:
-
-1. Add more jobs
-2. Increase and refine already extant wordlists
-3. Create a "skills" wordlist
-4. Allow sorting by job type, location, etc.
-  + Maybe a Shiny app?
-
-## Browse/Search Jobs
-
-``` {r all_jobs, echo=FALSE}
+``` {r admin_jobs, echo=FALSE}
 job_data_linkchar <- job_data %>% mutate(
   job_file = as.character(job_file))
   
@@ -122,7 +124,9 @@ job_data_with_links <- job_link_id %>% mutate(
     '<a href="https://www.higheredjobs.com/myHigherEdJobs/Agent/details.cfm?JobCode=',link_id,'" target="_blank">',job_name,'</a>')
   )
 
-job_data_with_links %>% select(link, job_cat, job_body_html) %>%
+job_data_with_links %>% 
+  filter(word(job_cat, 1) == "Admin") %>%
+  select(link, job_cat, job_body_html) %>%
   datatable(rownames = FALSE, escape = FALSE,
             colnames = c("Job", "Category", "Job Ad"),
             options = list(pageLength = 1, 
@@ -131,3 +135,59 @@ job_data_with_links %>% select(link, job_cat, job_body_html) %>%
                            dom = '<"top" pif>')) %>%
   formatStyle(c('link','job_cat'), `vertical-align` = 'top')
 ```
+
+### Faculty Jobs
+
+``` {r dataf, echo=FALSE}
+tidy_jobs_f <- job_data %>% filter(word(job_cat, 1) == "Faculty") %>% select(-job_body_html) %>% mutate(
+  content = as.character(job_body))
+
+tidy_jobs_f <- tidy_jobs_f %>% unnest_tokens(word, content) 
+tidy_jobs_f <- tidy_jobs_f %>%
+  distinct(word, job_file, .keep_all = TRUE) #remove duplicates per job
+
+job_data %>% filter(word(job_cat, 1) == "Faculty") %>%
+  nrow() %>%
+  kable(row.names = FALSE, col.names = "Number of Jobs Analyzed",
+        align = "l")
+
+```
+
+
+**Job Categories**
+
+----
+
+``` {r job_categories_f, echo=FALSE}
+job_data %>% filter(word(job_cat, 1) == "Faculty") %>% select(job_cat) %>% 
+  filter(str_count(job_cat, ' ') > 0) %>%
+  group_by(job_cat) %>% count() %>%
+  arrange(-n) %>%
+  datatable(rownames = FALSE,
+            colnames = c("Departments", "Count"),
+            options = list(pageLength = 5))
+```
+
+#### **Common Skills**
+
+TBD
+
+<br/><br/>
+
+
+#### **Browse/Search Faculty Jobs**
+
+``` {r fac_jobs, echo=FALSE}
+job_data_with_links %>% 
+  filter(word(job_cat, 1) == "Faculty") %>%
+  select(link, job_cat, job_body_html) %>%
+  datatable(rownames = FALSE, escape = FALSE,
+            colnames = c("Job", "Category", "Job Ad"),
+            options = list(pageLength = 1, 
+                           lengthChange = FALSE, 
+                           searchHighlight = TRUE,
+                           dom = '<"top" pif>')) %>%
+  formatStyle(c('link','job_cat'), `vertical-align` = 'top')
+```
+
+

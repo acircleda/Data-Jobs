@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/620278/6ba96774d0d545b39bdd23f4e44dde31
+bundleId: https://api.rpubs.com/api/v1/document/620278/6ba96774d0d545b39bdd23f4e44dde31
+url: http://rpubs.com/acircleda/620278/edit
+when: 1606747703.29471
